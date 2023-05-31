@@ -1,58 +1,47 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stopwatch Using JavaScript - Easy Tutorials</title>
-    <linK rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="stopwatch">
-        <h1 id="displayTime">00:00:00</h1>
-        <div class="buttons">
-            <img src="images/stop.png"  onclick="watchStop()">
-            <img src="images/start.png" onclick="watchStart()">
-            <img src="images/reset.png" onclick="watchreset()">
-        </div>
-    </div>
-<script>
-    let [seconds, minutes, hours ]=[0,0,0];
-    let displayTime=document.getElementById("displayTime");
-    let timer= null;
-    function stopwatch(){
-        seconds++;
-        if(seconds==60)
-        {
-            seconds=0;
-            minutes++;
-            if(minutes==60){
-                minutes=0;
-                hours++;
-            }
-        }
+    <head>
+        <title>unit converter</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
 
-        let h= hours < 10 ? "0" + hours : hours;
-        let m= minutes< 10 ? "0" + minutes : minutes;
-        let s= seconds < 10 ? "0" + seconds : seconds;
-        displayTime.innerHTML = h + ":"+ m +":"+ s;
-    }
-
-
-    function watchStart(){
-        if(timer!= null)
-        {
-            clearInterval(timer);
-        }
-        timer = setInterval(stopwatch,1000);
-    }
-    function watchStop(){
-        clearInterval(timer);
-    }
-    function watchreset(){
-        clearInterval(timer);
-        [seconds, minutes, hours ]=[0,0,0];
-        displayTime.innerHTML= "00:00:00";
-    }
-</script>
-
-</body>
+        <div class="converter-wrapper">
+          <h1>UNIT <br>CONVERTER</h1>
+        
+          <form name="property_form">
+            <span>
+              <select class="select-property" name="the_menu" size=1 onChange="UpdateUnitMenu(this, document.form_A.unit_menu); UpdateUnitMenu(this, document.form_B.unit_menu)">
+              </select>
+            </span>
+          </form>
+        
+          <div class="converter-side-a">
+            <form name="form_A" onSubmit="return false">
+              <input type="text" class="numbersonly" name="unit_input" maxlength="20" value="0" onKeyUp="CalculateUnit(document.form_A, document.form_B)">
+              <span>
+                <select name="unit_menu" onChange="CalculateUnit(document.form_B, document.form_A)">
+                </select>
+              </span>
+            </form>
+          </div> <!-- /converter-side-a -->
+          
+         <div class="converter-equals">
+           <p>=</p>
+         </div> <!-- /converter-side-a -->
+        
+          <div class="converter-side-b">
+            <form name="form_B" onSubmit="return false">
+              <input type="text" class="numbersonly" name="unit_input" maxlength="20" value="0" onkeyup="CalculateUnit(document.form_B, document.form_A)">
+              <span>
+                <select name="unit_menu" onChange="CalculateUnit(document.form_A, document.form_B)">
+                </select>
+              </span>
+            </form>
+          </div> <!-- /converter-side-b -->
+        </div><!-- /converter-wrapper -->
+        <div class="bottomright">A Website by Biswarup</div>
+        <script src="index.js" charset="utf-8"></script>
+        
+        </body>
+       
 </html>
